@@ -1,0 +1,36 @@
+{
+  "name": "google-sheets-fetch",
+  "version": "1.0.0",
+  "description": "An API to automate data fetching from a google sheet and store it in database",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon -r esm ./index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/bharat619"
+  },
+  "keywords": [
+    "Nodejs",
+    "express",
+    "node"
+  ],
+  "author": "Bharat",
+  "license": "MIT",
+  "dependencies": {
+    "connect-flash": "^0.1.1",
+    "debug": "^4.1.1",
+    "dotenv": "^6.2.0",
+    "esm": "^3.0.84",
+    "express": "^4.16.4",
+    "googleapis": "27",
+    "nodemon": "^1.18.9",
+    "pg": "^7.7.1",
+    "pg-hstore": "^2.3.2",
+    "pino": "^5.10.5",
+    "pug": "^2.0.3",
+    "sequelize": "^4.42.0",
+    "sequelize-cli": "^5.4.0"
+  }
+}
