@@ -5,4 +5,24 @@ block content
   .menu
     h3= 'here comes search bar'
   .main
-    h3= 'here comes table'
+    table
+      tr
+        th Student Name
+        th Gender
+        th Class Level
+        th Home State
+        th Major
+      each val in data
+        tr
+          td
+            a(href=`/student/${val.id}`) #{val.studentName}
+          td
+            span= val.gender
+          td
+            span= val.classLevel
+          td
+            span= val.homeState
+          td
+            span= val.major
+
+

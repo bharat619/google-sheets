@@ -1,0 +1,9 @@
+extends layout
+include mixins/_editForm
+block content
+  .header
+    h2= title
+  .menu
+    h3= 'Here comes search bar'
+  .main
+    +editForm(data)

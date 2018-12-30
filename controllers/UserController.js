@@ -20,16 +20,48 @@ const userController = {
         logger.error("Invalid credentials");
         return;
       }
-      const sheetData = this.default.authorize(
-        JSON.parse(contents),
-        this.default.getSheetData
-      );
+      console.log(this);
+      this.default.authorize(JSON.parse(contents), this.default.getSheetData);
       const students = await Student.findAll();
       res.render("users", {
         title: "Welcome to View and Edit",
         data: students
       });
     });
+  },
+  getStudent: async (req, res) => {
+    const student = await Student.findOne({
+      where: {
+        id: req.params.id
+      }
+    });
+    if (!student) {
+      req.flash("error", "Student not found");
+      res.redirect("/");
+    }
+    res.render("student", {
+      title: `Edit ${student.studentName}`,
+      data: student
+    });
+  },
+  editStudent: async (req, res) => {
+    const student = await Student.findByPk(req.body.id);
+    const { studentName, gender, classLevel, homeState, major } = req.body;
+    try {
+      await student.update({
+        studentName,
+        gender,
+        classLevel,
+        homeState,
+        major
+      });
+      req.flash("success", "Student updated successfully");
+      res.redirect("/");
+    } catch (e) {
+      console.log(e);
+      req.flash("error", "Unable to update the student.");
+      res.redirect(`/student/${req.body.id}`);
+    }
   },
   getNewToken: (oAuthClient, callback) => {
     const authUrl = oAuthClient.generateAuthUrl({
